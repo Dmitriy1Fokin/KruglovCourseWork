@@ -110,19 +110,7 @@ void MainWindow::readData()
     QByteArray data = serial->readAll();
     console->putData(data);
 
-
-    /////////////////////////////////////////////////////////
-    str.push_back(QString(data));
-    if (str[11] == '8')
-    {
-        QMessageBox* pmbx = new QMessageBox(QMessageBox::Information,
-                                            "Право доступа",
-                                            str);
-        pmbx->exec();
-        delete pmbx;
-        str.clear();
-    }
-
+    checkAccess(data);
 }
 //! [7]
 
@@ -150,4 +138,21 @@ void MainWindow::initActionsConnections()
 void MainWindow::showStatusMessage(const QString &message)
 {
     status->setText(message);
+}
+
+void MainWindow::checkAccess(const QByteArray &data)
+{
+    str.push_back(QString(data));
+
+    if (str[8] == '\n')
+    {
+        QString qwer;
+        qwer = str + "Test";
+        QMessageBox* pmbx = new QMessageBox(QMessageBox::Information,
+                                            "Право доступа",
+                                            qwer);
+        pmbx->exec();
+        delete pmbx;
+        str.clear();
+    }
 }

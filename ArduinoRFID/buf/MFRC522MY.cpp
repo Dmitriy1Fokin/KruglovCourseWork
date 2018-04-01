@@ -1316,16 +1316,15 @@ void MFRC522::PCD_DumpVersionToSerial() {
 	// Get the MFRC522 firmware version
 	byte v = PCD_ReadRegister(VersionReg);
 	Serial.print(F("Firmware Version: 0x"));
-	Serial.println(v, HEX);
-	Serial.println("The equipment is ready to work!!!");
+	Serial.print(v, HEX);
 	// Lookup which version
-	/*switch(v) {
+	switch(v) {
 		case 0x88: Serial.println(F(" = (clone)"));  break;
 		case 0x90: Serial.println(F(" = v0.0"));     break;
 		case 0x91: Serial.println(F(" = v1.0"));     break;
 		case 0x92: Serial.println(F(" = v2.0"));     break;
 		default:   Serial.println(F(" = (unknown)"));
-	}*/
+	}
 	// When 0x00 or 0xFF is returned, communication probably failed
 	if ((v == 0x00) || (v == 0xFF))
 		Serial.println(F("WARNING: Communication failure, is the MFRC522 properly connected?"));
@@ -1346,7 +1345,7 @@ void MFRC522::PICC_DumpToSerial(Uid *uid	///< Pointer to Uid struct returned fro
 	PICC_DumpDetailsToSerial(uid);
 	
 	// Dump contents
-	/*PICC_Type piccType = PICC_GetType(uid->sak);
+	PICC_Type piccType = PICC_GetType(uid->sak);
 	switch (piccType) {
 		case PICC_TYPE_MIFARE_MINI:
 		case PICC_TYPE_MIFARE_1K:
@@ -1374,7 +1373,7 @@ void MFRC522::PICC_DumpToSerial(Uid *uid	///< Pointer to Uid struct returned fro
 		case PICC_TYPE_NOT_COMPLETE:
 		default:
 			break; // No memory dump here
-	}*/
+	}
 	
 	Serial.println();
 	PICC_HaltA(); // Already done if it was a MIFARE Classic PICC.
@@ -1388,7 +1387,7 @@ void MFRC522::PICC_DumpToSerial(Uid *uid	///< Pointer to Uid struct returned fro
 void MFRC522::PICC_DumpDetailsToSerial(Uid *uid	///< Pointer to Uid struct returned from a successful PICC_Select().
 									) {
 	// UID
-	//Serial.print(F("Card UID:"));
+	Serial.print(F("Card UID:"));
 	for (byte i = 0; i < uid->size; i++) {
 		if(uid->uidByte[i] < 0x10)
 			Serial.print(F(" 0"));
@@ -1399,7 +1398,7 @@ void MFRC522::PICC_DumpDetailsToSerial(Uid *uid	///< Pointer to Uid struct retur
 	Serial.println();
 	
 	// SAK
-	/*Serial.print(F("Card SAK: "));
+	Serial.print(F("Card SAK: "));
 	if(uid->sak < 0x10)
 		Serial.print(F("0"));
 	Serial.println(uid->sak, HEX);
@@ -1407,9 +1406,20 @@ void MFRC522::PICC_DumpDetailsToSerial(Uid *uid	///< Pointer to Uid struct retur
 	// (suggested) PICC type
 	PICC_Type piccType = PICC_GetType(uid->sak);
 	Serial.print(F("PICC type: "));
-	Serial.println(PICC_GetTypeName(piccType));*/
+	Serial.println(PICC_GetTypeName(piccType));
 } // End PICC_DumpDetailsToSerial()
 
+
+void MFRC522::PICC_DumpToSerialOnlyID(Uid *uid)
+{	
+	for (byte i = 0; i < uid->size; i++) {
+		if(uid->uidByte[i] < 0x10)
+			Serial.print(F("0"));
+		Serial.print(uid->uidByte[i], HEX);
+	} 	
+	Serial.print("\n");
+	PICC_HaltA(); // Already done if it was a MIFARE Classic PICC.
+}
 /**
  * Dumps memory contents of a MIFARE Classic PICC.
  * On success the PICC is halted after dumping the data.

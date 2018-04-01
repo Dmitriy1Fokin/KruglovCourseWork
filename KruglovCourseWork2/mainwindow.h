@@ -90,6 +90,7 @@ private slots:
 
 private:
     void initActionsConnections();
+    void checkAccess(const QByteArray &data);
 
 private:
     void showStatusMessage(const QString &message);
