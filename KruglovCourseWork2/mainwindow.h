@@ -53,10 +53,9 @@
 #define MAINWINDOW_H
 
 #include <QtCore/QtGlobal>
-
 #include <QMainWindow>
-
 #include <QtSerialPort/QSerialPort>
+#include <QVector>
 
 QT_BEGIN_NAMESPACE
 
@@ -103,6 +102,7 @@ private:
 
     /////////////////////////////////////////////////////
     QString str;
+    QVector<QString> bdOfCard;
 };
 
 #endif // MAINWINDOW_H

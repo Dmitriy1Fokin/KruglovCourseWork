@@ -6,6 +6,7 @@
 #include <QMessageBox>
 #include <QLabel>
 #include <QtSerialPort/QSerialPort>
+//#include <iostream>
 
 //! [0]
 MainWindow::MainWindow(QWidget *parent) :
@@ -139,20 +140,27 @@ void MainWindow::showStatusMessage(const QString &message)
 {
     status->setText(message);
 }
-
+////////////////////////////////////////////////////////////////////////
 void MainWindow::checkAccess(const QByteArray &data)
 {
     str.push_back(QString(data));
-
+    bdOfCard.push_back("50DB01A8");
     if (str[8] == '\n')
     {
-        QString qwer;
-        qwer = str + "Test";
-        QMessageBox* pmbx = new QMessageBox(QMessageBox::Information,
-                                            "Право доступа",
-                                            qwer);
-        pmbx->exec();
-        delete pmbx;
+        if(str.contains(bdOfCard[0]))
+        {
+            QPalette p = palette();
+            p.setColor(QPalette::Base, Qt::green);
+            p.setColor(QPalette::Text, Qt::black);
+            console->setPalette(p);
+        }
+        else
+        {
+            QPalette p = palette();
+            p.setColor(QPalette::Base, Qt::red);
+            p.setColor(QPalette::Text, Qt::black);
+            console->setPalette(p);
+        }
         str.clear();
     }
 }
