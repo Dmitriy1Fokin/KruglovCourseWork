@@ -33,6 +33,7 @@ public:
     QAction *actionDisconnect;
     QAction *actionConfigure;
     QAction *actionQuit;
+    QAction *actionData_Base_of_card;
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout;
     QMenuBar *menuBar;
@@ -59,6 +60,8 @@ public:
         actionConfigure->setObjectName(QStringLiteral("actionConfigure"));
         actionQuit = new QAction(MainWindow);
         actionQuit->setObjectName(QStringLiteral("actionQuit"));
+        actionData_Base_of_card = new QAction(MainWindow);
+        actionData_Base_of_card->setObjectName(QStringLiteral("actionData_Base_of_card"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         verticalLayout = new QVBoxLayout(centralWidget);
@@ -91,6 +94,7 @@ public:
         menuCalls->addSeparator();
         menuCalls->addAction(actionQuit);
         menuTools->addAction(actionConfigure);
+        menuTools->addAction(actionData_Base_of_card);
         menuHelp->addAction(actionAbout);
         menuHelp->addAction(actionAboutQt);
         mainToolBar->addAction(actionConnect);
@@ -128,6 +132,7 @@ public:
         actionConfigure->setShortcut(QApplication::translate("MainWindow", "Alt+C", Q_NULLPTR));
         actionQuit->setText(QApplication::translate("MainWindow", "&Quit", Q_NULLPTR));
         actionQuit->setShortcut(QApplication::translate("MainWindow", "Ctrl+Q", Q_NULLPTR));
+        actionData_Base_of_card->setText(QApplication::translate("MainWindow", "Data Base of card", Q_NULLPTR));
         menuCalls->setTitle(QApplication::translate("MainWindow", "Calls", Q_NULLPTR));
         menuTools->setTitle(QApplication::translate("MainWindow", "Tools", Q_NULLPTR));
         menuHelp->setTitle(QApplication::translate("MainWindow", "Help", Q_NULLPTR));

@@ -7,16 +7,19 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     settingsdialog.cpp \
-    console.cpp
+    console.cpp \
+    databasecard.cpp
 
 HEADERS += \
     mainwindow.h \
     settingsdialog.h \
-    console.h
+    console.h \
+    databasecard.h
 
 FORMS += \
     mainwindow.ui \
-    settingsdialog.ui
+    settingsdialog.ui \
+    databasecard.ui
 
 RESOURCES += \
     terminal.qrc

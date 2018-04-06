@@ -39,6 +39,7 @@
      <string>Tools</string>
     </property>
     <addaction name="actionConfigure"/>
+    <addaction name="actionData_Base_of_card"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -118,6 +119,11 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionData_Base_of_card">
+   <property name="text">
+    <string>Data Base of card</string>
    </property>
   </action>
  </widget>
