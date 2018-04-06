@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Simple Terminal</string>
+   <string>RFID Reader</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout"/>
@@ -22,7 +22,7 @@
      <x>0</x>
      <y>0</y>
      <width>400</width>
-     <height>19</height>
+     <height>18</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuCalls">
@@ -39,7 +39,6 @@
      <string>Tools</string>
     </property>
     <addaction name="actionConfigure"/>
-    <addaction name="actionClear"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -62,7 +61,6 @@
    <addaction name="actionConnect"/>
    <addaction name="actionDisconnect"/>
    <addaction name="actionConfigure"/>
-   <addaction name="actionClear"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionAbout">
@@ -82,10 +80,6 @@
    </property>
   </action>
   <action name="actionConnect">
-   <property name="icon">
-    <iconset resource="terminal.qrc">
-     <normaloff>:/images/connect.png</normaloff>:/images/connect.png</iconset>
-   </property>
    <property name="text">
     <string>C&amp;onnect</string>
    </property>
@@ -97,10 +91,6 @@
    </property>
   </action>
   <action name="actionDisconnect">
-   <property name="icon">
-    <iconset resource="terminal.qrc">
-     <normaloff>:/images/disconnect.png</normaloff>:/images/disconnect.png</iconset>
-   </property>
    <property name="text">
     <string>&amp;Disconnect</string>
    </property>
@@ -112,10 +102,6 @@
    </property>
   </action>
   <action name="actionConfigure">
-   <property name="icon">
-    <iconset resource="terminal.qrc">
-     <normaloff>:/images/settings.png</normaloff>:/images/settings.png</iconset>
-   </property>
    <property name="text">
     <string>&amp;Configure</string>
    </property>
@@ -126,26 +112,7 @@
     <string>Alt+C</string>
    </property>
   </action>
-  <action name="actionClear">
-   <property name="icon">
-    <iconset resource="terminal.qrc">
-     <normaloff>:/images/clear.png</normaloff>:/images/clear.png</iconset>
-   </property>
-   <property name="text">
-    <string>C&amp;lear</string>
-   </property>
-   <property name="toolTip">
-    <string>Clear data</string>
-   </property>
-   <property name="shortcut">
-    <string>Alt+L</string>
-   </property>
-  </action>
   <action name="actionQuit">
-   <property name="icon">
-    <iconset resource="terminal.qrc">
-     <normaloff>:/images/application-exit.png</normaloff>:/images/application-exit.png</iconset>
-   </property>
    <property name="text">
     <string>&amp;Quit</string>
    </property>
@@ -155,8 +122,6 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="terminal.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

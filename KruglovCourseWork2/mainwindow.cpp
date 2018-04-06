@@ -6,21 +6,17 @@
 #include <QMessageBox>
 #include <QLabel>
 #include <QtSerialPort/QSerialPort>
-//#include <iostream>
 
-//! [0]
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-//! [0]
     ui->setupUi(this);
     console = new Console;
     console->setEnabled(false);
     setCentralWidget(console);
-//! [1]
+
     serial = new QSerialPort(this);
-//! [1]
     settings = new SettingsDialog;
 
     ui->actionConnect->setEnabled(true);
@@ -35,14 +31,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(serial, static_cast<void (QSerialPort::*)(QSerialPort::SerialPortError)>(&QSerialPort::error),
             this, &MainWindow::handleError);
-
-//! [2]
     connect(serial, &QSerialPort::readyRead, this, &MainWindow::readData);
-//! [2]
     connect(console, &Console::getData, this, &MainWindow::writeData);
-//! [3]
 }
-//! [3]
+
 
 MainWindow::~MainWindow()
 {
@@ -50,7 +42,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-//! [4]
+
 void MainWindow::openSerialPort()
 {
     SettingsDialog::Settings p = settings->settings();
@@ -75,9 +67,8 @@ void MainWindow::openSerialPort()
         showStatusMessage(tr("Open error"));
     }
 }
-//! [4]
 
-//! [5]
+
 void MainWindow::closeSerialPort()
 {
     if (serial->isOpen())
@@ -88,34 +79,32 @@ void MainWindow::closeSerialPort()
     ui->actionConfigure->setEnabled(true);
     showStatusMessage(tr("Disconnected"));
 }
-//! [5]
+
 
 void MainWindow::about()
 {
-    QMessageBox::about(this, tr("About Simple Terminal"),
-                       tr("The <b>Simple Terminal</b> example demonstrates how to "
-                          "use the Qt Serial Port module in modern GUI applications "
-                          "using Qt, with a menu bar, toolbars, and a status bar."));
+    QMessageBox::about(this, tr("About RFID Reader"),
+                       tr("The <b>RFID Reader</b> is a course work on discipline of OOP"
+                          "and microprocessors. In this program using Qt and Arduino"
+                          "Uno with readout module RFIO-RC522."));
 }
 
-//! [6]
+
 void MainWindow::writeData(const QByteArray &data)
 {
     serial->write(data);
 }
-//! [6]
 
-//! [7]
+
 void MainWindow::readData()
 {
     QByteArray data = serial->readAll();
-    console->putData(data);
+    //console->putData(data);
 
     checkAccess(data);
 }
-//! [7]
 
-//! [8]
+
 void MainWindow::handleError(QSerialPort::SerialPortError error)
 {
     if (error == QSerialPort::ResourceError) {
@@ -123,7 +112,7 @@ void MainWindow::handleError(QSerialPort::SerialPortError error)
         closeSerialPort();
     }
 }
-//! [8]
+
 
 void MainWindow::initActionsConnections()
 {
@@ -131,7 +120,6 @@ void MainWindow::initActionsConnections()
     connect(ui->actionDisconnect, &QAction::triggered, this, &MainWindow::closeSerialPort);
     connect(ui->actionQuit, &QAction::triggered, this, &MainWindow::close);
     connect(ui->actionConfigure, &QAction::triggered, settings, &MainWindow::show);
-    connect(ui->actionClear, &QAction::triggered, console, &Console::clear);
     connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::about);
     connect(ui->actionAboutQt, &QAction::triggered, qApp, &QApplication::aboutQt);
 }
