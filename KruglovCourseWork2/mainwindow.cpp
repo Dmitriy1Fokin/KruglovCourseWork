@@ -29,6 +29,8 @@ MainWindow::MainWindow(QWidget *parent) :
     status = new QLabel;
     ui->statusBar->addWidget(status);
 
+    vector_bdOfCard.push_back("50DB01A8");
+
     initActionsConnections();
 
     connect(serial, static_cast<void (QSerialPort::*)(QSerialPort::SerialPortError)>(&QSerialPort::error),
@@ -136,7 +138,7 @@ void MainWindow::showStatusMessage(const QString &message)
 void MainWindow::checkAccess(const QByteArray &data)
 {
     str.push_back(QString(data));
-    vector_bdOfCard.push_back("50DB01A8");
+    //vector_bdOfCard.push_back("50DB01A8");
     if (str[8] == '\n')
     {
         if(str.contains(vector_bdOfCard[0]))
