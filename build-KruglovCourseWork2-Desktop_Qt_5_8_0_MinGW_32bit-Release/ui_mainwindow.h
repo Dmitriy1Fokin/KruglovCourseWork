@@ -32,8 +32,8 @@ public:
     QAction *actionConnect;
     QAction *actionDisconnect;
     QAction *actionConfigure;
-    QAction *actionClear;
     QAction *actionQuit;
+    QAction *actionData_Base_of_card;
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout;
     QMenuBar *menuBar;
@@ -54,29 +54,14 @@ public:
         actionAboutQt->setObjectName(QStringLiteral("actionAboutQt"));
         actionConnect = new QAction(MainWindow);
         actionConnect->setObjectName(QStringLiteral("actionConnect"));
-        QIcon icon;
-        icon.addFile(QStringLiteral(":/images/connect.png"), QSize(), QIcon::Normal, QIcon::Off);
-        actionConnect->setIcon(icon);
         actionDisconnect = new QAction(MainWindow);
         actionDisconnect->setObjectName(QStringLiteral("actionDisconnect"));
-        QIcon icon1;
-        icon1.addFile(QStringLiteral(":/images/disconnect.png"), QSize(), QIcon::Normal, QIcon::Off);
-        actionDisconnect->setIcon(icon1);
         actionConfigure = new QAction(MainWindow);
         actionConfigure->setObjectName(QStringLiteral("actionConfigure"));
-        QIcon icon2;
-        icon2.addFile(QStringLiteral(":/images/settings.png"), QSize(), QIcon::Normal, QIcon::Off);
-        actionConfigure->setIcon(icon2);
-        actionClear = new QAction(MainWindow);
-        actionClear->setObjectName(QStringLiteral("actionClear"));
-        QIcon icon3;
-        icon3.addFile(QStringLiteral(":/images/clear.png"), QSize(), QIcon::Normal, QIcon::Off);
-        actionClear->setIcon(icon3);
         actionQuit = new QAction(MainWindow);
         actionQuit->setObjectName(QStringLiteral("actionQuit"));
-        QIcon icon4;
-        icon4.addFile(QStringLiteral(":/images/application-exit.png"), QSize(), QIcon::Normal, QIcon::Off);
-        actionQuit->setIcon(icon4);
+        actionData_Base_of_card = new QAction(MainWindow);
+        actionData_Base_of_card->setObjectName(QStringLiteral("actionData_Base_of_card"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         verticalLayout = new QVBoxLayout(centralWidget);
@@ -86,7 +71,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 400, 19));
+        menuBar->setGeometry(QRect(0, 0, 400, 18));
         menuCalls = new QMenu(menuBar);
         menuCalls->setObjectName(QStringLiteral("menuCalls"));
         menuTools = new QMenu(menuBar);
@@ -109,13 +94,11 @@ public:
         menuCalls->addSeparator();
         menuCalls->addAction(actionQuit);
         menuTools->addAction(actionConfigure);
-        menuTools->addAction(actionClear);
         menuHelp->addAction(actionAbout);
         menuHelp->addAction(actionAboutQt);
         mainToolBar->addAction(actionConnect);
         mainToolBar->addAction(actionDisconnect);
         mainToolBar->addAction(actionConfigure);
-        mainToolBar->addAction(actionClear);
 
         retranslateUi(MainWindow);
 
@@ -124,7 +107,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Simple Terminal", Q_NULLPTR));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "RFID Reader", Q_NULLPTR));
         actionAbout->setText(QApplication::translate("MainWindow", "&About", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
         actionAbout->setToolTip(QApplication::translate("MainWindow", "About program", Q_NULLPTR));
@@ -146,13 +129,9 @@ public:
         actionConfigure->setToolTip(QApplication::translate("MainWindow", "Configure serial port", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         actionConfigure->setShortcut(QApplication::translate("MainWindow", "Alt+C", Q_NULLPTR));
-        actionClear->setText(QApplication::translate("MainWindow", "C&lear", Q_NULLPTR));
-#ifndef QT_NO_TOOLTIP
-        actionClear->setToolTip(QApplication::translate("MainWindow", "Clear data", Q_NULLPTR));
-#endif // QT_NO_TOOLTIP
-        actionClear->setShortcut(QApplication::translate("MainWindow", "Alt+L", Q_NULLPTR));
         actionQuit->setText(QApplication::translate("MainWindow", "&Quit", Q_NULLPTR));
         actionQuit->setShortcut(QApplication::translate("MainWindow", "Ctrl+Q", Q_NULLPTR));
+        actionData_Base_of_card->setText(QApplication::translate("MainWindow", "Data Base of card", Q_NULLPTR));
         menuCalls->setTitle(QApplication::translate("MainWindow", "Calls", Q_NULLPTR));
         menuTools->setTitle(QApplication::translate("MainWindow", "Tools", Q_NULLPTR));
         menuHelp->setTitle(QApplication::translate("MainWindow", "Help", Q_NULLPTR));

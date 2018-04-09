@@ -2,7 +2,6 @@
 #include "ui_mainwindow.h"
 #include "console.h"
 #include "settingsdialog.h"
-#include "databasecard.h"
 
 #include <QMessageBox>
 #include <QLabel>
@@ -19,7 +18,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     serial = new QSerialPort(this);
     settings = new SettingsDialog;
-    dbCard = new DataBaseCard;
 
     ui->actionConnect->setEnabled(true);
     ui->actionDisconnect->setEnabled(false);
@@ -43,7 +41,6 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete settings;
-    delete dbCard;
     delete ui;
 }
 
@@ -125,7 +122,6 @@ void MainWindow::initActionsConnections()
     connect(ui->actionDisconnect, &QAction::triggered, this, &MainWindow::closeSerialPort);
     connect(ui->actionQuit, &QAction::triggered, this, &MainWindow::close);
     connect(ui->actionConfigure, &QAction::triggered, settings, &MainWindow::show);
-    connect(ui->actionData_Base_of_card, &QAction::triggered, dbCard, &MainWindow::show);
     connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::about);
     connect(ui->actionAboutQt, &QAction::triggered, qApp, &QApplication::aboutQt);
 }
@@ -138,7 +134,6 @@ void MainWindow::showStatusMessage(const QString &message)
 void MainWindow::checkAccess(const QByteArray &data)
 {
     str.push_back(QString(data));
-    //vector_bdOfCard.push_back("50DB01A8");
     if (str[8] == '\n')
     {
         if(str.contains(vector_bdOfCard[0]))

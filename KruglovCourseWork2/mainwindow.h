@@ -18,7 +18,6 @@ QT_END_NAMESPACE
 
 class Console;
 class SettingsDialog;
-class DataBaseCard;
 
 class MainWindow : public QMainWindow
 {
@@ -48,7 +47,6 @@ private:
     Console *console;
     SettingsDialog *settings;
     QSerialPort *serial;
-    DataBaseCard *dbCard;
 
     /////////////////////////////////////////////////////
     QString str;

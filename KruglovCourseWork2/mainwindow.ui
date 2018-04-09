@@ -39,7 +39,6 @@
      <string>Tools</string>
     </property>
     <addaction name="actionConfigure"/>
-    <addaction name="actionData_Base_of_card"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">

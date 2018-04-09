@@ -94,7 +94,6 @@ public:
         menuCalls->addSeparator();
         menuCalls->addAction(actionQuit);
         menuTools->addAction(actionConfigure);
-        menuTools->addAction(actionData_Base_of_card);
         menuHelp->addAction(actionAbout);
         menuHelp->addAction(actionAboutQt);
         mainToolBar->addAction(actionConnect);
